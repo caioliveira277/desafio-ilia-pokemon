@@ -7,27 +7,32 @@ import { CardComponent, CarouselComponent } from "@/components";
     <CarouselComponent>
       <CardComponent
         class="mb-4"
-        image-url="https://images.pokemontcg.io/xy1/1.png"
+        symbol-image-url="https://images.pokemontcg.io/xy1/symbol.png"
+        card-image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
       <CardComponent
         class="mb-4"
-        image-url="https://images.pokemontcg.io/xy1/1.png"
+        symbol-image-url="https://images.pokemontcg.io/xy1/symbol.png"
+        card-image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
       <CardComponent
         class="mb-4"
-        image-url="https://images.pokemontcg.io/xy1/1.png"
+        symbol-image-url="https://images.pokemontcg.io/xy1/symbol.png"
+        card-image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
       <CardComponent
         class="mb-4"
+        symbol-image-url="https://images.pokemontcg.io/xy1/symbol.png"
+        card-image-url="https://images.pokemontcg.io/xy1/1.png"
         image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"

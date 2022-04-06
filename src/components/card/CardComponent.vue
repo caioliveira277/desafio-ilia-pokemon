@@ -1,6 +1,7 @@
 <script setup lang="ts">
 export interface ICard {
-  imageUrl: string;
+  cardImageUrl: string;
+  symbolImageUrl: string;
   id: string;
   title: string;
   list: string[];
@@ -18,7 +19,7 @@ defineProps<ICard>();
       </h4>
       <div class="position-relative image overflow-hidden shadow">
         <img
-          :src="imageUrl"
+          :src="cardImageUrl"
           :alt="`Imagem de ilustração: ${title}`"
           width="245"
           height="342"
@@ -28,7 +29,7 @@ defineProps<ICard>();
         >
           <img
             title="Símbolo"
-            src="https://images.pokemontcg.io/xy1/symbol.png"
+            :src="symbolImageUrl"
             width="35"
             height="35"
             class="bg-white p-1 border border-dark mb-2 rounded-2"
