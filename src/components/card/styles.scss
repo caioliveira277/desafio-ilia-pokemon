@@ -1,3 +1,20 @@
-div {
-  border-radius: 5px;
+.card {
+  .image {
+    cursor: pointer;
+    border-radius: 10px;
+
+    .mask {
+      transition: all 250ms ease;
+      opacity: 0;
+      background: #4974be2e;
+      backdrop-filter: blur(13px);
+    }
+
+    &:hover,
+    &:focus {
+      .mask {
+        opacity: 1;
+      }
+    }
+  }
 }
