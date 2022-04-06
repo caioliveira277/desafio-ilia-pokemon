@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import { Card } from "@/components";
+import { CardComponent, CarouselComponent } from "@/components";
 </script>
 
 <template>
-  <main class="container pt-5">
-    <div class="row">
-      <Card
-        class="col-3"
+  <main class="container py-5">
+    <CarouselComponent>
+      <CardComponent
+        class="mb-4"
         image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
-      <Card
-        class="col-3"
+      <CardComponent
+        class="mb-4"
         image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
-      <Card
-        class="col-3"
+      <CardComponent
+        class="mb-4"
         image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
-      <Card
-        class="col-3"
+      <CardComponent
+        class="mb-4"
         image-url="https://images.pokemontcg.io/xy1/1.png"
         id="xy1-1"
         title="Venusaur-EX"
         :list="['Grass']"
       />
-    </div>
+    </CarouselComponent>
   </main>
 </template>

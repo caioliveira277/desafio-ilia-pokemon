@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <header class="shadow-lg bg-dark">
+  <header class="header shadow-lg bg-dark py-3">
     <div
       class="container d-flex align-items-center flex-column justify-content-between"
     >
@@ -12,10 +12,11 @@
           width="390"
           height="147"
           alt="Logo Pokémon"
+          class="w-100 h-100"
         />
       </picture>
       <fieldset class="mt-5 text-white">
-        <label for="input-search" class="mb-1">Buscar pokemons:</label>
+        <h1 for="input-search" class="mb-1 h4">Buscar pokémons:</h1>
         <div class="input-group">
           <div class="input-group-text bg-white">
             <img src="@/assets/images/search.svg" alt="Icone de busca" />
@@ -28,7 +29,9 @@
             placeholder="Encontre pelo nome"
           />
         </div>
-        <small class="mt-1">Exemplo: Venusaur</small>
+        <small class="mt-1"
+          >Exemplo: Venusaur, Ampharos, Bulbasaur, Caterpie, Dratini ...</small
+        >
       </fieldset>
     </div>
   </header>
