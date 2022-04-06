@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export interface ICard {
+interface ICardProps {
   cardImageUrl: string;
   symbolImageUrl: string;
   id: string;
@@ -7,7 +7,12 @@ export interface ICard {
   list: string[];
 }
 
-defineProps<ICard>();
+interface ICardEmit {
+  (event: "handleClickMoreDetails", id: string): void;
+}
+
+const emits = defineEmits<ICardEmit>();
+defineProps<ICardProps>();
 </script>
 
 <template>
@@ -39,7 +44,13 @@ defineProps<ICard>();
           <ul>
             <li v-for="(item, index) in list" :key="index">{{ item }}</li>
           </ul>
-          <a href="#" class="btn btn-light mt-auto">Mais detalhes</a>
+          <button
+            type="button"
+            @click="emits('handleClickMoreDetails', id)"
+            class="btn btn-light mt-auto"
+          >
+            Mais detalhes
+          </button>
         </div>
       </div>
     </div>
