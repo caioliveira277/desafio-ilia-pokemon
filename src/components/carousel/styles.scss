@@ -1,0 +1,9 @@
+.carousel {
+  @media screen and (max-width: 575px) {
+    flex-wrap: nowrap !important;
+    .card {
+      width: auto;
+      margin: 0 10px;
+    }
+  }
+}
