@@ -1,4 +1,5 @@
-import Card from "./card/Card.vue";
-import Header from "./header/Header.vue";
+import CardComponent from "./card/CardComponent.vue";
+import HeaderComponent from "./header/HeaderComponent.vue";
+import CarouselComponent from "./carousel/CarouselComponent.vue";
 
-export { Card, Header };
+export { CardComponent, HeaderComponent, CarouselComponent };
