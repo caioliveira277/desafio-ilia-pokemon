@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { CardComponent, CarouselComponent } from "@/components";
 import { useRouter } from "vue-router";
+import { useStore } from "@/context/store";
+import type { IDataPokemon } from "@/context/types";
 
 const router = useRouter();
+const store = useStore();
+
 const data = {
   id: "xy1-1",
   name: "Venusaur-EX",
@@ -46,41 +50,12 @@ const data = {
   },
 };
 
-type attacks = {
-  name: string;
-  convertedEnergyCost: number;
-  damage: number;
-  text: string;
-}[];
-type objectTypeValue = {
-  type: string;
-  value: string;
-}[];
-type set = {
-  images: {
-    symbol: string;
-  };
-};
-type images = {
-  small: string;
-  large: string;
-};
-interface IDataPokemon {
-  id: string;
-  name: string;
-  attacks: attacks;
-  types: string[];
-  weaknesses: objectTypeValue;
-  resistances: objectTypeValue;
-  set: set;
-  images: images;
-}
-
-function handlePushDetails(id: string) {
+function handlePushDetails(item: IDataPokemon) {
+  store.dispatch("setCurrentPokemon", item);
   router.push({
     name: "moreDetails",
     query: {
-      id,
+      id: item.id,
     },
   });
 }
@@ -90,13 +65,15 @@ function handlePushDetails(id: string) {
   <main class="container py-5">
     <CarouselComponent>
       <CardComponent
+        v-for="item in Array(1).fill(data)"
+        :key="item.id"
         class="mb-4"
-        :symbol-image-url="data.set.images.symbol"
-        :card-image-url="data.images.small"
-        :id="data.id"
-        :title="data.name"
-        :list="data.types"
-        @handleClickMoreDetails="handlePushDetails"
+        :symbol-image-url="item.set.images.symbol"
+        :card-image-url="item.images.small"
+        :id="item.id"
+        :title="item.name"
+        :list="item.types"
+        @handleClickMoreDetails="handlePushDetails(item)"
       />
     </CarouselComponent>
   </main>
