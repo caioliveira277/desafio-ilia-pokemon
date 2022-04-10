@@ -3,10 +3,22 @@ import { CardComponent, CarouselComponent } from "@/components";
 import { useRouter } from "vue-router";
 import { useStore } from "@/context/store";
 import type { IDataPokemon } from "@/context/types";
+import { onMounted, reactive } from "vue";
+import { CardAdapter } from "@/adapters/CardAdapterRequest";
 
 const router = useRouter();
 const store = useStore();
 
+const cardAdapter = new CardAdapter();
+const localState = reactive<{ cards: IDataPokemon[] }>({
+  cards: [],
+});
+
+onMounted(() => {
+  cardAdapter.getPokemonCards().then(({ data: dataCards }) => {
+    localState.cards = cardAdapter.formatCards(dataCards.data);
+  });
+});
 const data = {
   id: "xy1-1",
   name: "Venusaur-EX",
@@ -49,7 +61,6 @@ const data = {
     large: "https://images.pokemontcg.io/xy1/1_hires.png",
   },
 };
-
 function handlePushDetails(item: IDataPokemon) {
   store.dispatch("setCurrentPokemon", item);
   router.push({
@@ -65,7 +76,7 @@ function handlePushDetails(item: IDataPokemon) {
   <main class="container py-5">
     <CarouselComponent>
       <CardComponent
-        v-for="item in Array(1).fill(data)"
+        v-for="item in localState.cards"
         :key="item.id"
         class="mb-4"
         :symbol-image-url="item.set.images.symbol"
