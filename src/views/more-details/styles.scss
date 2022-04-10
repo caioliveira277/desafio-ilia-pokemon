@@ -7,9 +7,10 @@ main {
     .flipper {
       transform-style: preserve-3d;
       transition: transform 0.7s;
+      border-radius: 20px;
       .back {
         z-index: 10;
-        border-radius: 20px;
+        border-radius: inherit;
         transform: rotateY(180deg);
         background: #4974be2e;
         backdrop-filter: blur(13px);
@@ -17,7 +18,7 @@ main {
         transition: opacity 200ms 160ms ease;
       }
     }
-    &:hover {
+    &:hover, &.focus {
       .flipper {
         transform: rotateY(180deg);
         .front {
