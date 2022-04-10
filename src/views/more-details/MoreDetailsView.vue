@@ -84,9 +84,9 @@ function handleFocusCard(state: boolean): void {
                 href="#"
                 @click.prevent="
                   handleToggleModal(item.name, [
-                    `Custo de mana: ${item.convertedEnergyCost}`,
-                    `Dano: ${item.damage}`,
-                    `Descrição: ${item.text}`,
+                    `Custo de mana: ${item.convertedEnergyCost || '-'}`,
+                    `Dano: ${item.damage || '-'}`,
+                    `Descrição: ${item.text || '-'}`,
                   ])
                 "
                 class="text-white"
