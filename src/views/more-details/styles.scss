@@ -1,9 +1,33 @@
 main {
   height: 100vh;
+
+  .flip-container {
+    perspective: 1500px;
+    .flipper {
+      transform-style: preserve-3d;
+      transition: transform 0.7s;
+      .back {
+        border-radius: 20px;
+        transform: rotateY(180deg);
+        background: #4974be2e;
+        backdrop-filter: blur(13px);
+        opacity: 0;
+        transition: opacity 200ms 160ms ease;
+      }
+    }
+    &:hover {
+      .flipper {
+        transform: rotateY(180deg);
+        .back {
+          opacity: 1;
+        }
+      }
+    }
+  }
   img {
     width: auto;
     max-height: 90vh;
-    
+
     @media screen and (max-width: 575px) {
       width: 100%;
     }
