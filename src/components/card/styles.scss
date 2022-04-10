@@ -1,11 +1,13 @@
+@import "@/theme/variables.scss";
+
 .card {
   .image {
     border-radius: 15px;
     .mask {
       transition: all 250ms ease;
       opacity: 0;
-      background: #4974be2e;
-      backdrop-filter: blur(13px);
+      background: $primary-opacity;
+      backdrop-filter: blur($blur);
     }
 
     &:hover,

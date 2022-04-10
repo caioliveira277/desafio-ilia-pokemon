@@ -1,3 +1,5 @@
+@import "@/theme/variables.scss";
+
 main {
   min-height: 100vh;
 
@@ -12,13 +14,14 @@ main {
         z-index: 10;
         border-radius: inherit;
         transform: rotateY(180deg);
-        background: #4974be2e;
-        backdrop-filter: blur(13px);
+        background: $primary-opacity;
+        backdrop-filter: blur($blur);
         opacity: 0;
         transition: opacity 200ms 160ms ease;
       }
     }
-    &:hover, &.focus {
+    &:hover,
+    &.focus {
       .flipper {
         transform: rotateY(180deg);
         .front {
