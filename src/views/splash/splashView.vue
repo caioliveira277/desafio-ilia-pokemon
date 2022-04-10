@@ -22,10 +22,10 @@ function handleClick(): void {
       />
       <h1 class="text-white fw-bold">
         Olá, para interagir com os "cards" é necessário passar o cursor do mouse
-        ou clicar ✌
+        ou clicar
       </h1>
       <button type="button" @click="handleClick" class="btn btn-light mt-5">
-        Ok!!
+        Ok!
       </button>
     </div>
   </main>
