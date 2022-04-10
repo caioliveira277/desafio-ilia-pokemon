@@ -34,6 +34,10 @@ export const store = createStore<State>({
       visible: false,
     },
   },
+  getters: {
+    currentPokemon: (state) => state.currentPokemon,
+    modal: (state) => state.modal,
+  },
   mutations: {
     setCurrentPokemonId(state, payload: string) {
       state.currentPokemon.id = payload;
@@ -59,8 +63,8 @@ export const store = createStore<State>({
     setCurrentPokemonImages(state, payload: IDataPokemon["images"]) {
       state.currentPokemon.images = payload;
     },
-    setModal(state, paylod: IModal) {
-      state.modal = paylod;
+    setModal(state, payload: IModal) {
+      state.modal = payload;
     },
   },
   actions: {
