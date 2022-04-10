@@ -1,26 +1,38 @@
 <script setup lang="ts">
+import { reactive } from "vue";
 import { useStore } from "@/context/store";
 
 const store = useStore();
-const currentPokemon = store.state.currentPokemon;
+const { currentPokemon } = store.getters;
 
-function toggleModal(title: string, description: string[]) {
+const localState = reactive({
+  focus: false,
+});
+
+function handleToggleModal(title: string, description: string[]): void {
   store.dispatch("toggleModalState", {
     title,
     description,
   });
-  console.log(store.state.modal);
+}
+
+function handleFocusCard(state: boolean): void {
+  localState.focus = state;
 }
 </script>
 
 <template>
-  <main class="container py-5">
+  <main class="container py-5" @click="handleFocusCard(false)">
     <h1 class="text-center mb-4" title="Nome do pokémon">
       <span title="ID do pokémon">{{ currentPokemon.id }}:</span>
       {{ currentPokemon.name }}
     </h1>
-    <div class="flip-container mx-auto">
-      <div class="flipper position-relative">
+    <div
+      class="flip-container mx-auto"
+      :class="{ focus: localState.focus }"
+      @click.stop="handleFocusCard(true)"
+    >
+      <div class="flipper position-relative shadow">
         <div class="front">
           <img
             :src="currentPokemon.images.large"
@@ -71,7 +83,7 @@ function toggleModal(title: string, description: string[]) {
               <a
                 href="#"
                 @click.prevent="
-                  toggleModal(item.name, [
+                  handleToggleModal(item.name, [
                     `Custo de mana: ${item.convertedEnergyCost}`,
                     `Dano: ${item.damage}`,
                     `Descrição: ${item.text}`,
