@@ -28,3 +28,4 @@ coverage
 *.sw?
 
 .eslintcache
+package-lock.json
