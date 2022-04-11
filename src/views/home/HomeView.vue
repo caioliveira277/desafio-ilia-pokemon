@@ -72,7 +72,7 @@ function handlePushDetails(item: IDataPokemon) {
         :card-image-url="item.images.small"
         :id="item.id"
         :title="item.name"
-        :list="item.types"
+        :types="item.types"
         @handleClickMoreDetails="handlePushDetails(item)"
       />
     </CarouselComponent>
