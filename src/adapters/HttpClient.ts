@@ -39,7 +39,7 @@ export abstract class HttpClient {
     );
   }
 
-  public cacheInterceptorEject() {
+  public cacheInterceptorEject(): void {
     this.instance.interceptors.request.eject(this.cacheRequestInterceptorId);
   }
 }
