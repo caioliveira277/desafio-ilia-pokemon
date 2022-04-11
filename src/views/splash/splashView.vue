@@ -21,7 +21,7 @@ function handleClick(): void {
         class="mb-5"
       />
       <h1 class="text-white fw-bold">
-        Olá, para interagir com os "cards" é necessário passar o cursor do mouse
+        Olá, para interagir com os cards é necessário passar o cursor do mouse
         ou clicar
       </h1>
       <button type="button" @click="handleClick" class="btn btn-light mt-5">
