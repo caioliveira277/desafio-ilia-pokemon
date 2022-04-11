@@ -81,7 +81,7 @@ describe("HttpClient", () => {
     cardAdapter.cacheInterceptorEject();
   });
 
-  test("Ensure getPokemonCards returns data", async () => {
+  test("Should return the data", async () => {
     mockAdapter.onGet().reply(200, { data: dataMock });
 
     const pokemonCards = await cardAdapter.getPokemonCards();
@@ -90,7 +90,7 @@ describe("HttpClient", () => {
     expect(pokemonCards.data.data).toHaveLength(2);
   });
 
-  test("Ensure formatCards returns pokemon card formatted", async () => {
+  test("Should return formatted cards", async () => {
     mockAdapter.onGet().reply(200, { data: dataMock });
 
     const { data: dataPokemon } = await cardAdapter.getPokemonCards();
@@ -134,5 +134,14 @@ describe("HttpClient", () => {
     expect(pokemonCardsFormatted[0]).toHaveProperty(["images", "large"]);
     expect(pokemonCardsFormatted[0].images.small).contain("https://");
     expect(pokemonCardsFormatted[0].images.large).contain("https://");
+  });
+
+  test("Should pass the parameters to the url", async () => {
+    mockAdapter.onGet().reply(200, { data: dataMock });
+    const { request } = await cardAdapter.getPokemonCards("any_name", 2);
+
+    const expectedUrl =
+      "/cards?orderBy=name&page=2&pageSize=30&q=nationalPokedexNumbers%3A%5B1+TO+151%5D+name%3Aany_name*";
+    expect(request.responseURL).toEqual(expectedUrl);
   });
 });
