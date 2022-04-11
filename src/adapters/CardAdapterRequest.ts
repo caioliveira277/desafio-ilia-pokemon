@@ -2,7 +2,11 @@ import type { IDataPokemon } from "@/context/types";
 import type { AxiosResponse } from "axios";
 import { HttpClient } from "./HttpClient";
 
-export class CardAdapter extends HttpClient {
+export interface IAnyObjectList {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: { [key: string]: any }[];
+}
+export class CardAdapterRequest extends HttpClient {
   private rangeQuery = "nationalPokedexNumbers:[1 TO 151]";
   private queryParameters = {
     orderBy: "name",
@@ -18,7 +22,7 @@ export class CardAdapter extends HttpClient {
   public getPokemonCards(
     searchName = "",
     page = 1
-  ): Promise<AxiosResponse<{ data: { [key: string]: never }[] }>> {
+  ): Promise<AxiosResponse<IAnyObjectList>> {
     this.queryParameters.page = page.toString();
 
     if (searchName) {
@@ -27,27 +31,26 @@ export class CardAdapter extends HttpClient {
       this.queryParameters.q = this.rangeQuery;
     }
 
-    return this.instance.get(
+    return this.instance.get<IAnyObjectList>(
       `/cards?${this.formatQueryString(this.queryParameters)}`
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public formatCards(data: { [key: string]: any }[]): IDataPokemon[] {
+  public formatCards(data: IAnyObjectList["data"]): IDataPokemon[] {
     return data.map((item) => {
       return {
-        id: item.id,
-        attacks: item.attacks,
-        images: item.images,
-        name: item.name,
-        resistances: item.resistances,
+        id: item.id || "",
+        attacks: item.attacks || [],
+        images: item.images || { small: "", large: "" },
+        name: item.name || "",
+        resistances: item.resistances || [],
         set: {
           images: {
-            symbol: item.set.images.symbol,
+            symbol: item.set.images.symbol || "",
           },
         },
-        types: item.types,
-        weaknesses: item.weaknesses,
+        types: item.types || [],
+        weaknesses: item.weaknesses || [],
       } as IDataPokemon;
     });
   }
