@@ -32,12 +32,8 @@ export class CardAdapter extends HttpClient {
     );
   }
 
-  public formatCards({
-    data,
-  }: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: { [key: string]: any }[];
-  }): IDataPokemon[] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public formatCards(data: { [key: string]: any }[]): IDataPokemon[] {
     return data.map((item) => {
       return {
         id: item.id,
