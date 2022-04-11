@@ -3,28 +3,41 @@ import type { AxiosResponse } from "axios";
 import { HttpClient } from "./HttpClient";
 
 export class CardAdapter extends HttpClient {
+  private rangeQuery = "nationalPokedexNumbers:[1 TO 151]";
   private queryParameters = {
     orderBy: "name",
     page: "1",
     pageSize: "30",
-    q: "nationalPokedexNumbers:[1 TO 151]",
+    q: this.rangeQuery,
   };
 
   constructor() {
     super();
   }
 
-  public getPokemonCards(): Promise<
-    AxiosResponse<{ data: { [key: string]: never }[] }>
-  > {
+  public getPokemonCards(
+    searchName = "",
+    page = 1
+  ): Promise<AxiosResponse<{ data: { [key: string]: never }[] }>> {
+    this.queryParameters.page = page.toString();
+
+    if (searchName) {
+      this.queryParameters.q = `${this.rangeQuery} name:${searchName}*`;
+    } else {
+      this.queryParameters.q = this.rangeQuery;
+    }
+
     return this.instance.get(
       `/cards?${this.formatQueryString(this.queryParameters)}`
     );
   }
 
-  public formatCards(
-    data: { [key: string]: string | object }[]
-  ): IDataPokemon[] {
+  public formatCards({
+    data,
+  }: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: { [key: string]: any }[];
+  }): IDataPokemon[] {
     return data.map((item) => {
       return {
         id: item.id,
