@@ -1,22 +1,22 @@
-export type TAttacks = {
+type TAttacks = {
   name: string;
   convertedEnergyCost: number;
   damage: string;
   text: string;
 }[];
 
-export type TObjectTypeValue = {
+type TObjectTypeValue = {
   type: string;
   value: string;
 }[];
 
-export type TSet = {
+type TSet = {
   images: {
     symbol: string;
   };
 };
 
-export type TImages = {
+type TImages = {
   small: string;
   large: string;
 };
@@ -30,4 +30,10 @@ export interface IDataPokemon {
   resistances: TObjectTypeValue;
   set: TSet;
   images: TImages;
+}
+
+export interface IModal {
+  title: string;
+  description: string[];
+  visible: boolean;
 }

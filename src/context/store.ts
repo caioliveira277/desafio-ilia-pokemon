@@ -1,15 +1,10 @@
 import type { InjectionKey } from "vue";
 import { createStore, useStore as baseUseStore, Store } from "vuex";
-import type {
-  IDataPokemon,
-  TAttacks,
-  TImages,
-  TObjectTypeValue,
-  TSet,
-} from "./types";
+import type { IDataPokemon, IModal } from "./types";
 
 export interface State {
   currentPokemon: IDataPokemon;
+  modal: IModal;
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -33,10 +28,10 @@ export const store = createStore<State>({
         large: "",
       },
     },
-  },
-  getters: {
-    imageSymbol({ currentPokemon }) {
-      return currentPokemon.set.images.symbol;
+    modal: {
+      title: "",
+      description: [],
+      visible: false,
     },
   },
   mutations: {
@@ -46,23 +41,26 @@ export const store = createStore<State>({
     setCurrentPokemonName(state, payload: string) {
       state.currentPokemon.name = payload;
     },
-    setCurrentPokemonAttacks(state, payload: TAttacks) {
+    setCurrentPokemonAttacks(state, payload: IDataPokemon["attacks"]) {
       state.currentPokemon.attacks = payload;
     },
     setCurrentPokemonTypes(state, payload: string[]) {
       state.currentPokemon.types = payload;
     },
-    setCurrentPokemonWeaknesses(state, payload: TObjectTypeValue) {
+    setCurrentPokemonWeaknesses(state, payload: IDataPokemon["weaknesses"]) {
       state.currentPokemon.weaknesses = payload;
     },
-    setCurrentPokemonResistances(state, payload: TObjectTypeValue) {
+    setCurrentPokemonResistances(state, payload: IDataPokemon["resistances"]) {
       state.currentPokemon.resistances = payload;
     },
-    setCurrentPokemonSet(state, payload: TSet) {
+    setCurrentPokemonSet(state, payload: IDataPokemon["set"]) {
       state.currentPokemon.set = payload;
     },
-    setCurrentPokemonImages(state, payload: TImages) {
+    setCurrentPokemonImages(state, payload: IDataPokemon["images"]) {
       state.currentPokemon.images = payload;
+    },
+    setModal(state, paylod: IModal) {
+      state.modal = paylod;
     },
   },
   actions: {
@@ -75,6 +73,12 @@ export const store = createStore<State>({
       commit("setCurrentPokemonResistances", paylod.resistances);
       commit("setCurrentPokemonSet", paylod.set);
       commit("setCurrentPokemonImages", paylod.images);
+    },
+    toggleModalState({ commit, state }, payload: IModal) {
+      commit("setModal", {
+        ...payload,
+        visible: !state.modal.visible,
+      });
     },
   },
 });
