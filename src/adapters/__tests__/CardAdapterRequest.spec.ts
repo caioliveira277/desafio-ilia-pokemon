@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeAll } from "vitest";
+import { describe, it, expect, beforeAll } from "vitest";
 import { CardAdapterRequest } from "../CardAdapterRequest";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
@@ -81,7 +81,7 @@ describe("HttpClient", () => {
     cardAdapter.cacheInterceptorEject();
   });
 
-  test("Should return the data", async () => {
+  it("Should return the data", async () => {
     mockAdapter.onGet().reply(200, { data: dataMock });
 
     const pokemonCards = await cardAdapter.getPokemonCards();
@@ -90,7 +90,7 @@ describe("HttpClient", () => {
     expect(pokemonCards.data.data).toHaveLength(2);
   });
 
-  test("Should return formatted cards", async () => {
+  it("Should return formatted cards", async () => {
     mockAdapter.onGet().reply(200, { data: dataMock });
 
     const { data: dataPokemon } = await cardAdapter.getPokemonCards();
@@ -136,7 +136,7 @@ describe("HttpClient", () => {
     expect(pokemonCardsFormatted[0].images.large).contain("https://");
   });
 
-  test("Should pass the parameters to the url", async () => {
+  it("Should pass the parameters to the url", async () => {
     mockAdapter.onGet().reply(200, { data: dataMock });
     const { request } = await cardAdapter.getPokemonCards("any_name", 2);
 
