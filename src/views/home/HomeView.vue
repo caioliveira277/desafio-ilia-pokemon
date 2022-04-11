@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useStore } from "@/context/store";
 import type { IDataPokemon } from "@/context/types";
 import { onMounted, reactive, ref, watch } from "vue";
-import { CardAdapter } from "@/adapters/CardAdapterRequest";
+import { CardAdapterRequest } from "@/adapters/CardAdapterRequest";
 import axios from "axios";
 
 const route = useRoute();
@@ -13,7 +13,7 @@ const store = useStore();
 
 const finalItemRef = ref<Element>();
 
-const cardAdapter = new CardAdapter();
+const cardAdapter = new CardAdapterRequest();
 const localState = reactive<{
   cards: IDataPokemon[];
   loading: boolean;
@@ -40,8 +40,8 @@ onMounted(() => {
     if (entries.some((entry) => entry.isIntersecting)) {
       cardAdapter
         .getPokemonCards(route.query.busca?.toString(), localState.currentPage)
-        .then(({ data: dataCards }) => {
-          localState.cards.push(...cardAdapter.formatCards(dataCards.data));
+        .then(({ data: dataPokemon }) => {
+          localState.cards.push(...cardAdapter.formatCards(dataPokemon.data));
           localState.currentPage += 1;
           localState.loading = false;
         })
@@ -65,8 +65,8 @@ watch(
 
     cardAdapter
       .getPokemonCards(searchName?.toString(), 1)
-      .then(({ data: dataCards }) => {
-        localState.cards = cardAdapter.formatCards(dataCards.data);
+      .then(({ data: dataPokemon }) => {
+        localState.cards = cardAdapter.formatCards(dataPokemon.data);
         localState.currentPage += 1;
         localState.loading = false;
       })
