@@ -10,9 +10,11 @@ main {
       transform-style: preserve-3d;
       transition: transform 0.7s;
       border-radius: 20px;
+      .front, .back, img {
+        border-radius: inherit;
+      }
       .back {
         z-index: 10;
-        border-radius: inherit;
         transform: rotateY(180deg);
         background: $primary-opacity;
         backdrop-filter: blur($blur);

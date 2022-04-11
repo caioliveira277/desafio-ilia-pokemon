@@ -16,7 +16,7 @@ defineProps<ICardProps>();
 </script>
 
 <template>
-  <div class="card d-flex justify-content-center">
+  <div class="card d-flex">
     <div>
       <h4 title="Nome do pokémon">
         <span title="ID do pokémon">{{ id }}:</span>

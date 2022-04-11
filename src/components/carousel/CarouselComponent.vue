@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="carousel row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 overflow-auto px-4 px-sm-0"
+    class="carousel row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 overflow-auto px-4 px-sm-0 align-items-center"
   >
     <slot></slot>
   </div>

@@ -1,0 +1,18 @@
+.home {
+  .card-loading {
+    width: 245px;
+    height: 342px;
+    border-radius: 20px;
+    img {
+      animation: rotate 1s infinite ease;
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
