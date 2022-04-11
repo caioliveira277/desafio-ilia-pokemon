@@ -4,7 +4,7 @@ interface ICardProps {
   symbolImageUrl: string;
   id: string;
   title: string;
-  list: string[];
+  types: string[];
 }
 
 interface ICardEmit {
@@ -40,9 +40,9 @@ defineProps<ICardProps>();
             class="bg-white p-1 border border-dark mb-2 rounded-2"
             alt="Símbolo do pokémon"
           />
-          <h5 class="mt-1">Tipos:</h5>
+          <h5 class="mt-1">Tipo(s):</h5>
           <ul>
-            <li v-for="(item, index) in list" :key="index">{{ item }}</li>
+            <li v-for="(item, index) in types" :key="index">{{ item }}</li>
           </ul>
           <button
             type="button"
