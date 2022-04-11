@@ -35,7 +35,12 @@ export const store = createStore<State>({
     },
   },
   getters: {
-    currentPokemon: (state) => state.currentPokemon,
+    currentPokemon: (state) => {
+      if (!state.currentPokemon.id) {
+        return JSON.parse(sessionStorage.getItem("currentPokemon") || "");
+      }
+      return state.currentPokemon;
+    },
     modal: (state) => state.modal,
   },
   mutations: {
@@ -68,7 +73,7 @@ export const store = createStore<State>({
     },
   },
   actions: {
-    setCurrentPokemon({ commit }, paylod: IDataPokemon) {
+    setCurrentPokemon({ commit, state }, paylod: IDataPokemon) {
       commit("setCurrentPokemonId", paylod.id);
       commit("setCurrentPokemonName", paylod.name);
       commit("setCurrentPokemonAttacks", paylod.attacks);
@@ -77,6 +82,10 @@ export const store = createStore<State>({
       commit("setCurrentPokemonResistances", paylod.resistances);
       commit("setCurrentPokemonSet", paylod.set);
       commit("setCurrentPokemonImages", paylod.images);
+      sessionStorage.setItem(
+        "currentPokemon",
+        JSON.stringify(state.currentPokemon)
+      );
     },
     toggleModalState({ commit, state }, payload: IModal) {
       commit("setModal", {
