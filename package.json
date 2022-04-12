@@ -7,7 +7,7 @@
     "test:unit": "vitest --environment jsdom",
     "test:e2e": "cypress open",
     "test:e2e:run": "cypress run",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "eslint . --ext .vue,.ts --fix --ignore-path .gitignore",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -45,7 +45,7 @@
     "vue-tsc": "^0.33.9"
   },
   "lint-staged": {
-    "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.{vue, ts}": "eslint --cache --fix",
+    "*.{ts, vue}": "prettier --write"
   }
 }
