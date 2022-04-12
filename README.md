@@ -79,7 +79,7 @@ Os scripts abaixo executam a compilação do projeto.
    
 ---
 
-### Informativos:
+### Informativo:
 A publicação do arquivo .env está sendo feita somente para caso de teste, estando ciente que seu uso correto seria publicando um arquivo de exemplo contendo somente os nomes das variáveis.
   
 ---
